@@ -19,15 +19,18 @@ public class GameManager : MonoBehaviour
 
     public Transform player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void MouseDown(){
+        Collider[] enemies = Physics.OverlapSphere(Input.mousePosition, 10f);
+        float distance = 0;
+        float minDistance = 0;
+        foreach(Collider enemy in enemies){
+            if(enemy.tag == "Ennemy"){
+                distance = Vector3.Distance(player.position, enemy.transform.position);
+                if(distance < minDistance){
+                    minDistance = distance;
+                    player.GetComponent<PlayerController>().SetTarget(enemy.transform);
+                }
+            }
+        }
     }
 }
