@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window
       objectReference: {fileID: 0}
+    - target: {fileID: 7526793255443542156, guid: ac06c2053c943e5b0954ed697901c8de,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac06c2053c943e5b0954ed697901c8de, type: 3}
 --- !u!1 &172717021
@@ -411,6 +416,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 6158285612699146758, guid: ac06c2053c943e5b0954ed697901c8de,
     type: 3}
   trigger: 0
+  bullets: []
   cam: {fileID: 0}
   player: {fileID: 2110959410}
 --- !u!1 &1133416834
@@ -626,11 +632,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 873944749860372956, guid: cab650b87adab464b9caaac35bf0e78e,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 883024626021018611, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
       propertyPath: m_MaskInteraction
@@ -734,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
       propertyPath: speed
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
