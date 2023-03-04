@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject player;
+    public GameObject music;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         nextWindow.gameObject.SetActive(false);
 
         cam.orthographicSize = currentWindow.GetSize().y / 2;
+        music.GetComponent<AudioController>().GetSource().Play();
     }
 
     public void NextLevel()
@@ -77,8 +79,9 @@ public class GameManager : MonoBehaviour
         //TODO animation cracks bigger
         // wait for animation to finish
         yield return new WaitForSecondsRealtime(1f);
+        GetComponent<AudioController>().GetSource().Play();
         currentWindow.ActiveBigCrack();
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(5f);
 
         // resume time
         Time.timeScale = 1;

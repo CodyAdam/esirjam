@@ -25,6 +25,7 @@ public class Minion : EnemyEntity
         if(countdown >= fireRate)
         {
             Shoot();
+            GetComponent<AudioController>().GetSource().Play();
             countdown = 0;
         }
 
