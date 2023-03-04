@@ -28,9 +28,4 @@ public class EnemyEntity : MonoBehaviour
     }
 
     #endregion
-
-    private void OnMouseDown()
-    {
-        GameManager.instance.player.GetComponent<PlayerController>().SetTarget(transform);
-    }
 }
