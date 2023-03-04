@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentWindow.Init(level);
+        currentWindow.canSpawn = true;
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         nextWindow.Init(level + 1);
         nextWindow.gameObject.SetActive(false);
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         // stop time for animation
         Time.timeScale = 0;
+        currentWindow.canSpawn = false;
 
         //TODO animation cracks bigger
         // wait for animation to finish
@@ -95,8 +97,9 @@ public class GameManager : MonoBehaviour
         currentWindow.Break();
         currentWindow = nextWindow;
         currentWindow.gameObject.SetActive(true);
+        currentWindow.canSpawn = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         cam.DOOrthoSize(currentWindow.GetSize().y / 2, 5f);
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
