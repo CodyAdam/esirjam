@@ -28,6 +28,6 @@ public class Spawner : MonoBehaviour
     void Spawn()
     {
         GameObject newEnemy = Instantiate(this.enemy.gameObject, transform.position, transform.rotation);
-        newEnemy.GetComponent<Minion>().SetTarget(GameManager.instance.player);
+        newEnemy.GetComponent<Minion>().SetTarget(GameManager.instance.player.transform);
     }
 }
