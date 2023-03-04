@@ -124,6 +124,6 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.81453896, g: 0, b: 1, a: 1}
     - _Color: {r: 0.81453896, g: 0, b: 1, a: 1}
-    - _EmissionColor: {r: 29.11261, g: 0.73063564, b: 30.978956, a: 1}
+    - _EmissionColor: {r: 2.4024906, g: 0.49671748, b: 2.54441, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
