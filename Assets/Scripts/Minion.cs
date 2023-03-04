@@ -51,7 +51,8 @@ public class Minion : EnemyEntity
 
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(this.bullet.gameObject, transform.position, transform.rotation);
+        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+        GameObject newBullet = Instantiate(this.bullet.gameObject, newPosition, transform.rotation);
         newBullet.GetComponent<Bullet>().SetDirection((target.position - transform.position).normalized);
     }
 }
