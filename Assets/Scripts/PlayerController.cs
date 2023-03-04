@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire() 
     {
+        if(focusTo == null)
+            return;
 
         if (Vector2.Distance(focusTo.position, transform.position) < GetComponent<SphereCollider>().radius * 6)
         {
