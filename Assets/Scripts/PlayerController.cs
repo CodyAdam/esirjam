@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         if(nDash-- <= 0)
             return;
         target = newTarget;
-        targeted = target.position;
+        GameManager.instance.SetTargetPoint(target.position);
         isDashing = true;
         transform.DOMove(target.position, .1f).SetEase(Ease.InCirc).OnComplete(() => {
             level += .1f;
@@ -102,7 +102,8 @@ public class PlayerController : MonoBehaviour
 
         if(endDashing){
             endDashing = false;
-            SetTarget(focusTo.transform);
+            if(focusTo!= null) { SetTarget(focusTo.transform); }
+            
         }
 
         if (focusTo != null)
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
         if(target == null){
             transform.Translate(direction.normalized*speed/60.0f);
         }
+
         transform.localScale = new Vector3(getSize(), getSize(), getSize());
         
     }
