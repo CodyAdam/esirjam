@@ -15,13 +15,14 @@ public class Bullet : EnemyEntity
     // Start is called before the first frame update
     void Start()
     {
-        speed = 7f;
+        GameManager.instance.bullets.Add(gameObject);
     }
 
     void OnBecameInvisible(){
         Destroy(gameObject);
     }
-    public void OnTriggerEnter(Collider col){
+
+    public void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Player"){
             var player = col.GetComponent<PlayerController>();
             player.hit();

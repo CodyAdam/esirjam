@@ -9,15 +9,19 @@ public class GameManager : MonoBehaviour
     #region Singleton
     public static GameManager instance;
     private int level = 1;
-    private Window currentWindow;
+    public Window currentWindow;
     private Window nextWindow;
     public GameObject windowPrefab;
     public bool trigger = false;
+    public List<GameObject> bullets = new List<GameObject>();
 
     public Camera cam;
 
     // Debug only button to test next level
 
+    public Window GetCurrentWindow() { return currentWindow; }
+
+    public void SetCurrentWindow(Window newCurrentWindow) { currentWindow = newCurrentWindow; }
 
     public int getLevel(){
         return level;
@@ -45,7 +49,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         currentWindow.Init(level);
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         nextWindow.Init(level + 1);
@@ -56,6 +59,10 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        // remove all bullets
+        foreach (GameObject bullet in bullets) {
+            Destroy(bullet);
+        }
         level++;
         currentWindow.Break();
         currentWindow = nextWindow;
