@@ -8,6 +8,10 @@ public class Window : MonoBehaviour
     private int level;
     private BoxCollider2D bounds;
 
+    public List<Sprite> backgrounds = new List<Sprite>();
+
+    public SpriteRenderer bg = null;
+
     //list of gameobjects that are in the window that need to be destroyed on break
     public List<GameObject> cracks = new List<GameObject>();
     public GameObject bigCrack;
@@ -29,6 +33,7 @@ public class Window : MonoBehaviour
         this.level = level;
         this.HP = level * 4;
         var scale = Mathf.Exp(level / 1.3f);
+        bg.sprite = backgrounds[level - 1];
         spawnCooldown = 1 / (level * 0.5f);
         transform.localScale = new Vector3(scale, scale, scale);
         bounds = GetComponent<BoxCollider2D>();

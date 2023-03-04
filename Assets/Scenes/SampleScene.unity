@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWindow: {fileID: 318414070}
+  music: {fileID: 1631141152}
   windowPrefab: {fileID: 6158285612699146758, guid: ac06c2053c943e5b0954ed697901c8de,
     type: 3}
   fadeImage: {fileID: 1523322053}

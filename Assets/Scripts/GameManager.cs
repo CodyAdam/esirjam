@@ -109,6 +109,11 @@ public class GameManager : MonoBehaviour
             {
                 enemy.SetActive(false);
             }
+            // disable all window
+            foreach (GameObject window in GameObject.FindGameObjectsWithTag("Window"))
+            {
+                window.SetActive(false);
+            }
             // fing gameobject "Music" and stop the music
             music.Stop();
             yield break;
