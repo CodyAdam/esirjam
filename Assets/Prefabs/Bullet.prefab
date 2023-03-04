@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: 2a5a4c3854a7f10419a518d38e7a12aa, type: 3}
-  volume: 0.5
+  volume: 0.2
   pitch: 1
 --- !u!1 &3558573751676079104
 GameObject:
