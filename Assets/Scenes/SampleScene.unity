@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad9d5634761921488a49ce3addd56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWindow: {fileID: 318414070}
+  currentWindow: {fileID: 2037509157}
   windowPrefab: {fileID: 6158285612699146758, guid: ac06c2053c943e5b0954ed697901c8de,
     type: 3}
   fadeImage: {fileID: 1523322053}
@@ -903,6 +903,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2037509157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3480387181933560988, guid: ac06c2053c943e5b0954ed697901c8de,
+    type: 3}
+  m_PrefabInstance: {fileID: 20178610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f52d79dd90291309e7ff6398338479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2110959409
 PrefabInstance:
   m_ObjectHideFlags: 0
