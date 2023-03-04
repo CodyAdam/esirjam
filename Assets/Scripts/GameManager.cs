@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Window currentWindow;
     private Window nextWindow;
     public GameObject windowPrefab;
+    public Image fadeImage;
     public bool trigger = false;
     public List<GameObject> bullets = new List<GameObject>();
 
@@ -23,7 +25,8 @@ public class GameManager : MonoBehaviour
 
     public void SetCurrentWindow(Window newCurrentWindow) { currentWindow = newCurrentWindow; }
 
-    public int getLevel(){
+    public int getLevel()
+    {
         return level;
     }
 
@@ -37,8 +40,10 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    void Update(){
-        if(trigger){
+    void Update()
+    {
+        if (trigger)
+        {
             NextLevel();
             trigger = false;
         }
@@ -54,20 +59,46 @@ public class GameManager : MonoBehaviour
         nextWindow.Init(level + 1);
         nextWindow.gameObject.SetActive(false);
 
-        cam.orthographicSize = currentWindow.GetSize().y/2;
+        cam.orthographicSize = currentWindow.GetSize().y / 2;
     }
 
     public void NextLevel()
     {
+        StartCoroutine(NextLevelCoroutine());
+    }
+
+    IEnumerator NextLevelCoroutine()
+    {
+        // stop time for animation
+        Time.timeScale = 0;
+
+        //TODO animation cracks bigger
+        // wait for animation to finish
+        yield return new WaitForSecondsRealtime(1f);
+        currentWindow.ActiveBigCrack();
+        yield return new WaitForSecondsRealtime(1f);
+
+        // resume time
+        Time.timeScale = 1;
+
+
+        Color flash = fadeImage.color;
+        flash.a = .4f;
+        fadeImage.color = flash;
+        fadeImage.DOFade(0, .2f).SetEase(Ease.InSine);
         // remove all bullets
-        foreach (GameObject bullet in bullets) {
+        foreach (GameObject bullet in bullets)
+        {
             Destroy(bullet);
         }
         level++;
         currentWindow.Break();
         currentWindow = nextWindow;
         currentWindow.gameObject.SetActive(true);
-        cam.DOOrthoSize(currentWindow.GetSize().y/2, 1f);
+
+        yield return new WaitForSeconds(2f);
+
+        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 5f);
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         nextWindow.Init(level + 1);
         nextWindow.gameObject.SetActive(false);
