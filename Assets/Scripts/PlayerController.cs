@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         target = newTarget;
         targeted = target.position;
         isDashing = true;
-        transform.DOMove(target.position, .2f).SetEase(Ease.InCirc).OnComplete(() => {
+        transform.DOMove(target.position, .1f).SetEase(Ease.InCirc).OnComplete(() => {
             level += .1f;
             isDashing = false;
             Destroy(target.gameObject);
