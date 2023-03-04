@@ -20,6 +20,16 @@ public class Minion : EnemyEntity
         target = newTarget;
     }
 
+    private void update(){
+        if(countdown >= fireRate)
+        {
+            Shoot();
+            countdown = 0;
+        }
+
+        countdown += Time.deltaTime;
+    }
+
     private void FixedUpdate()
     {
         if (target != null)
@@ -36,14 +46,6 @@ public class Minion : EnemyEntity
             {
                 Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
                 transform.Translate(direction * speed /60.0f);
-
-                if(countdown >= fireRate)
-                {
-                    Shoot();
-                    countdown = 0;
-                }
-
-                countdown += Time.deltaTime;
             }
 
         }
