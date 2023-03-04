@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyEntity : MonoBehaviour
 {
-
-    
     protected float speed = 2.5f;
     Color startColor;
 
@@ -16,7 +14,6 @@ public class EnemyEntity : MonoBehaviour
     }
 
     #region ColorGestion
-
     private void OnMouseOver()
     {
         GetComponent<Renderer>().material.color = Color.red;
@@ -28,4 +25,9 @@ public class EnemyEntity : MonoBehaviour
     }
 
     #endregion
+
+    private void OnMouseDown()
+    {
+        GameManager.instance.player.GetComponent<PlayerController>().SetTarget(transform);
+    }
 }

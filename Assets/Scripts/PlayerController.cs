@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     Transform target;
     Transform focusTo;
     Vector2 direction = new Vector2();
+    float level = 1;
+    bool isDashing = false;
 
 
 
@@ -25,8 +28,35 @@ public class PlayerController : MonoBehaviour
 
     public void SetTarget(Transform newTarget)
     {
+        if(isDashing)
+            return;
+        isDashing = true;
         target = newTarget;
+        transform.DOMove(target.position, .2f).SetEase(Ease.InCirc).OnComplete(() => {
+            level += .1f;
+            isDashing = false;
+            Destroy(target.gameObject);
+        });
     }
+    public bool IsDashing(){
+        return isDashing;
+    }
+    public float getLevel(){
+        return level;
+    }
+    public void hit(){
+        if(!isDashing){
+            if(level < .5f)
+                death();
+            else
+                level -= .1f;
+        }
+    }
+
+    public float getSize(){
+        return level;
+    }
+
 
     private void Start()
     {
@@ -50,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Focus();
 
@@ -67,30 +97,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //Si le joueur a selectionn� une cible, il fonce dessus
-        if (target != null)
-        {
-            //Si il est sur la cible, il la d�truit
-            if (Vector2.Distance(target.position, (Vector2)transform.position) <= 0.1)
-            {
-                Destroy(target.gameObject);
-                Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-                targeted.position = newPosition;
-            }
-
-            //Sinon, il avance vers elle
-            else
-            {
-                targeted.position = target.transform.position;
-                goTo(target.position, 4);
-            }
-
+        if(target == null){
+            transform.Translate(direction.normalized*speed/60.0f);
         }
-
-        //Sinon, il va vers le curseur
-        else
-        {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-        }
+        transform.localScale = new Vector3(getSize(), getSize(), getSize());
     }
 
     void goTo(Vector2 pos, float speedFactor = 1){
@@ -119,5 +129,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+    void death(){
+
     }
 }
