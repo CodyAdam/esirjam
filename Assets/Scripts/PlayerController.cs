@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float maxRange;
     public Transform targeted;
 
+    float viewRadius;
+
     Vector2 pos;
     Transform target;
     Transform focusTo;
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         target = null;
+        viewRadius = GetComponent<SphereCollider>().radius * 6;
     }
 
     public void OnMove(InputValue value)
@@ -72,13 +75,8 @@ public class PlayerController : MonoBehaviour
     {
         if(focusTo == null)
             return;
-
-        if (Vector2.Distance(focusTo.position, transform.position) < GetComponent<SphereCollider>().radius * 6)
-        {
-            SetTarget(focusTo.transform);
-            targeted.position = target.position;
-
-        }
+        SetTarget(focusTo.transform);
+        targeted.position = target.position;
     }
 
 
@@ -115,12 +113,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         position.z = -2;
-        Collider[] enemies = Physics.OverlapSphere(position, 50f);
+        Collider[] enemies = Physics.OverlapSphere(position, viewRadius);
+
         float distance = 0;
         float minDistance = 99999999;
 
+        focusTo = null;
         foreach (Collider enemy in enemies)
         {
+            if(Vector3.Distance(enemy.transform.position, transform.position) > viewRadius)
+                continue;
             if (enemy.GetComponent<EnemyEntity>())
             {
                 distance = Vector3.Distance(position, enemy.transform.position);
