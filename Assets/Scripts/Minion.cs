@@ -20,7 +20,7 @@ public class Minion : EnemyEntity
         target = newTarget;
     }
 
-    private void update(){
+    private void Update(){
         if(countdown >= fireRate)
         {
             Shoot();
@@ -38,7 +38,7 @@ public class Minion : EnemyEntity
 
             if (Vector2.Distance(target.position, transform.position) <= 0.1)
             {
-                Destroy(gameObject);
+                // Destroy(gameObject);
             }
 
             //Sinon, il se tourne vers elle et avance
@@ -53,9 +53,10 @@ public class Minion : EnemyEntity
         }
     }
 
+
     private void Shoot()
     {
         GameObject newBullet = Instantiate(this.bullet.gameObject, transform.position, transform.rotation);
-        newBullet.GetComponent<Bullet>().SetDirection((target.position - transform.position).normalized);
+        newBullet.GetComponent<Bullet>();
     }
 }
