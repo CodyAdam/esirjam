@@ -219,8 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  dashSpeedFactor: 0
-  maxRange: 0
   targeted: {fileID: 7135254784001904210}
 --- !u!50 &9027094175196826348
 Rigidbody2D:
