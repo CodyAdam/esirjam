@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3229613663145937290}
   - component: {fileID: 3229613663145937295}
   - component: {fileID: -4075982916340976376}
+  - component: {fileID: 4840300716517878682}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Ennemy
@@ -60,6 +61,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6808158590806782840, guid: 9da55f42310a7274f971576000e1550c, type: 3}
+  speed: 2.5
+  fireRate: 5
 --- !u!54 &4840300716517878682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,25 +79,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-  --- !u!1818360609 &7243886519629338160
-RotationConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3229613663145937294}
-  m_Enabled: 0
-  m_Weight: 1
-  m_RotationAtRest: {x: -0.109, y: -2.475, z: 115.096}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 0
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
 --- !u!1 &7409247661475742610
 GameObject:
   m_ObjectHideFlags: 0

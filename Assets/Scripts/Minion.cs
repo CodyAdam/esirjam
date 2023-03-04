@@ -5,9 +5,10 @@ using UnityEngine;
 public class Minion : EnemyEntity
 {
     public Transform bullet;
+    public float speed;
 
     Transform target;
-    float fireRate = 1f;
+    public float fireRate;
     float countdown = 0f;
 
     public Transform GetTarget()

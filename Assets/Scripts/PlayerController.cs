@@ -8,11 +8,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    public double dashSpeedFactor;
-    public float maxRange;
     public Transform targeted;
 
-    float viewRadius;
+    public float viewRadius;
 
     Vector2 pos;
     Transform target;
@@ -101,12 +99,6 @@ public class PlayerController : MonoBehaviour
             transform.Translate(direction.normalized*speed/60.0f);
         }
         transform.localScale = new Vector3(getSize(), getSize(), getSize());
-    }
-
-    void goTo(Vector2 pos, float speedFactor = 1){
-        Vector2 direction = (pos - (Vector2)transform.position);
-        pos = (Vector2)transform.position + direction.normalized * speedFactor * speed * Time.deltaTime;
-        transform.position = pos;
     }
 
     void Focus()
