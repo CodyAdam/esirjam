@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 pos;
     Transform target;
+    Vector2 direction = new Vector2();
 
 
 
@@ -27,6 +29,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         target = null;
+    }
+
+    public void OnMove(InputValue value){
+        direction = value.Get<Vector2>();
+        Debug.Log(direction);
     }
 
     void Update()
@@ -51,7 +58,8 @@ public class PlayerController : MonoBehaviour
         //Sinon, il va vers le curseur
         else
         {
-            goTo(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            var delta3d = new Vector3(direction.x, 0, direction.y);
+            transform.Translate(delta3d.normalized*speed*Time.deltaTime);
         }
     }
 
