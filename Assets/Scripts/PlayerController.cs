@@ -37,8 +37,13 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing(){
         return isDashing;
     }
-    public float getLevel(){
+    public float GetLevel(){
         return level;
+    }
+
+    public void SetLevel(float newLevel)
+    {
+        level = newLevel;
     }
     public void hit(){
         if(!isDashing){

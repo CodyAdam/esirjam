@@ -6,8 +6,7 @@ public class EnemyEntity : MonoBehaviour
 {
     protected float speed = 2.5f;
 
-    private void OnMouseDown()
-    {
-        GameManager.instance.player.GetComponent<PlayerController>().SetTarget(transform);
-    }
+    public float GetSpeed() { return speed; }
+
+    public void SetSpeed(float newSpeed) { speed = newSpeed; }
 }
