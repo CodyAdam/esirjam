@@ -30,9 +30,12 @@ public class Window : MonoBehaviour
 
     public void Init(int level)
     {
+        if (level >= 6)
+            return;
         this.level = level;
         this.HP = level * 4;
         var scale = Mathf.Exp(level / 1.3f);
+
         bg.sprite = backgrounds[level - 1];
         spawnCooldown = 1 / (level * 0.5f);
         transform.localScale = new Vector3(scale, scale, scale);
