@@ -38,7 +38,7 @@ public class Minion : EnemyEntity
 
             if (Vector2.Distance(target.position, transform.position) <= 0.1)
             {
-                Destroy(gameObject);
+                // Destroy(gameObject);
             }
 
             //Sinon, il se tourne vers elle et avance

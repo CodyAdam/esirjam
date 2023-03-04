@@ -23,7 +23,6 @@ public class Bullet : EnemyEntity
         Destroy(gameObject);
     }
     public void OnTriggerEnter(Collider col){
-        Debug.Log(col.gameObject.tag);
         if(col.gameObject.tag == "Player"){
             var player = col.GetComponent<PlayerController>();
             player.hit();
