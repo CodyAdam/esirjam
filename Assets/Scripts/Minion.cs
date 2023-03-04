@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ennemy : MonoBehaviour
+public class Minion : EnemyEntity
 {
-    float speed = 5f;
-    Color startColor;
+    public Transform bullet;
+
+   
     Transform target;
-    Vector3 pos;
+    float fireRate = 1f;
+    float countdown = 0f;
 
     public Transform GetTarget()
     {
@@ -17,26 +19,6 @@ public class Ennemy : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-    }
-
-    private void Start()
-    {
-        startColor = GetComponent<Renderer>().material.color;
-    }
-
-    private void OnMouseOver()
-    {
-        GetComponent<Renderer>().material.color = Color.red;
-    }
-
-    private void OnMouseExit()
-    {
-        GetComponent<Renderer>().material.color = startColor;
-    }
-
-    private void OnMouseDown()
-    {
-        GameManager.instance.player.GetComponent<PlayerController>().SetTarget(transform);
     }
 
     private void Update()
@@ -56,8 +38,22 @@ public class Ennemy : MonoBehaviour
                 pos = transform.position + direction * speed * Time.deltaTime;
                 pos.y = transform.position.y;
                 transform.position = pos;
+
+                if(countdown >= fireRate)
+                {
+                    Shoot();
+                    countdown = 0;
+                }
+
+                countdown += Time.deltaTime;
             }
 
         }
+    }
+
+    private void Shoot()
+    {
+        GameObject newBullet = Instantiate(this.bullet.gameObject, transform.position, transform.rotation);
+        newBullet.GetComponent<Bullet>().SetDirection((target.position - transform.position).normalized);
     }
 }
