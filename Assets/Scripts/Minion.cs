@@ -45,7 +45,9 @@ public class Minion : EnemyEntity
             else
             {
                 Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
-                transform.Translate(direction * speed /60.0f);
+                transform.Translate(new Vector2(0, speed /60.0f));
+                float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
             }
 
         }
