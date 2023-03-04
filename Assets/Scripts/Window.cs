@@ -46,19 +46,19 @@ public class Window : MonoBehaviour
 
             if (side == 0)
             {
-                randomPos = new Vector3(spawnMin.position.x, Random.Range(spawnMin.position.y, spawnMax.position.y), 0);
+                randomPos = new Vector3(spawnMin.position.x, Random.Range(spawnMin.position.y, spawnMax.position.y), -1);
             }
             else if (side == 1)
             {
-                randomPos = new Vector3(spawnMax.position.x, Random.Range(spawnMin.position.y, spawnMax.position.y), 0);
+                randomPos = new Vector3(spawnMax.position.x, Random.Range(spawnMin.position.y, spawnMax.position.y), -1);
             }
             else if (side == 2)
             {
-                randomPos = new Vector3(Random.Range(spawnMin.position.x, spawnMax.position.x), spawnMin.position.y, 0);
+                randomPos = new Vector3(Random.Range(spawnMin.position.x, spawnMax.position.x), spawnMin.position.y, -1);
             }
             else if (side == 3)
             {
-                randomPos = new Vector3(Random.Range(spawnMin.position.x, spawnMax.position.x), spawnMax.position.y, 0);
+                randomPos = new Vector3(Random.Range(spawnMin.position.x, spawnMax.position.x), spawnMax.position.y, -1);
             }
             GameObject newEnemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
             newEnemy.GetComponent<Minion>().SetTarget(GameManager.instance.player.transform);
