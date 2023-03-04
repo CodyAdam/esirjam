@@ -68,7 +68,7 @@ public class PowerUpManager : MonoBehaviour
         Collider[] enemies = Physics.OverlapSphere(transform.position, max / 2);
         foreach (Collider c in enemies)
         {
-            c.GetComponent<EnemyEntity>().SetSpeed(c.GetComponent<EnemyEntity>().GetSpeed() / 2);
+            c.GetComponent<Minion>().speed /= 2;
         }
 
         while (timer > 0)
@@ -79,7 +79,7 @@ public class PowerUpManager : MonoBehaviour
 
         foreach (Collider c in enemies)
         {
-            c.GetComponent<EnemyEntity>().SetSpeed(c.GetComponent<EnemyEntity>().GetSpeed() * 2);
+            c.GetComponent<Minion>().speed *= 2;
         }
 
     }
