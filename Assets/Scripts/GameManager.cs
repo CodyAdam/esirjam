@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     // Debug only button to test next level
 
+    public Window GetCurrentWindow() { return currentWindow; }
+
+    public void SetCurrentWindow(Window newCurrentWindow) { currentWindow = newCurrentWindow; }
 
     public int getLevel(){
         return level;
