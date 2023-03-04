@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform enemy;
-    float spawnTimer = 2;
+    public float spawnTimer;
     float timer = 0;
 
     // Start is called before the first frame update

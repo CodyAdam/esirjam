@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Bullet : EnemyEntity
 {
-
+    public float speed;
     Vector2 direction;
-    float timer = 3f; 
 
     public void SetDirection(Vector2 newDirection)
     {
@@ -34,14 +33,6 @@ public class Bullet : EnemyEntity
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(timer <= 0)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        else
-        {
-            transform.Translate(new Vector2(0, 1f) * speed / 60.0f);
-        }
+        transform.Translate(new Vector2(0, 1f) * speed / 60.0f);
     }
 }
