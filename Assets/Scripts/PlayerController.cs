@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public double dashSpeedFactor;
+    public float maxRange;
 
     Vector3 pos;
     Transform target;
@@ -34,6 +35,21 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue value){
         direction = value.Get<Vector2>();
         Debug.Log(direction);
+    }
+
+    public void MouseDown(){
+        Collider[] enemies = Physics.OverlapSphere(Input.mousePosition, 10f);
+        float distance = 0;
+        float minDistance = 0;
+        foreach(Collider enemy in enemies){
+            if(enemy.tag == "Ennemy"){
+                distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if(distance < minDistance){
+                    minDistance = distance;
+                    transform.GetComponent<PlayerController>().SetTarget(enemy.transform);
+                }
+            }
+        }
     }
 
     void Update()
