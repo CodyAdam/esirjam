@@ -78,6 +78,7 @@ public class Window : MonoBehaviour
     public void ActiveBigCrack()
     {
         canSpawn = false;
+        GetComponent<AudioSource>().Play();
         bigCrack.SetActive(true);
     }
 

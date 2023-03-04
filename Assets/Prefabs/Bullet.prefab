@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb936f05adc26fd4c982138bed0503aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 2a5a4c3854a7f10419a518d38e7a12aa, type: 3}
-  volume: 0.2
+  sound: {fileID: 8300000, guid: 0d906c32f4290dd4e8ac3c88442a4ff7, type: 3}
+  volume: 1
   pitch: 1
+  playOnAwake: 0
 --- !u!1 &3558573751676079104
 GameObject:
   m_ObjectHideFlags: 0

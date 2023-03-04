@@ -82,14 +82,14 @@ public class GameManager : MonoBehaviour
         //TODO animation cracks bigger
         // wait for animation to finish
         yield return new WaitForSecondsRealtime(1f);
-        GetComponent<AudioController>().GetSource().Play();
         currentWindow.ActiveBigCrack();
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(1f);
 
         // resume time
         Time.timeScale = 1;
 
 
+        GetComponent<AudioController>().GetSource().Play();
         Color flash = fadeImage.color;
         flash.a = .4f;
         fadeImage.color = flash;

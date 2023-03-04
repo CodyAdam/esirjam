@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: d73f710fdd77a7146a56db9c550ab3ae, type: 3}
-  volume: 0.15
-  pitch: 1
+  volume: 0.1
+  pitch: 0.77
+  playOnAwake: 0
 --- !u!1 &7409247661475742610
 GameObject:
   m_ObjectHideFlags: 0
