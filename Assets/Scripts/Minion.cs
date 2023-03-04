@@ -6,7 +6,6 @@ public class Minion : EnemyEntity
 {
     public Transform bullet;
 
-   
     Transform target;
     float fireRate = 1f;
     float countdown = 0f;
@@ -25,15 +24,16 @@ public class Minion : EnemyEntity
     {
         if (target != null)
         {
-            //Si il est sur la cible, il la détruit
+            //Si il est sur la cible, il la dï¿½truit
             if (Vector3.Distance(target.position, transform.position) <= 0.1)
             {
                 Destroy(gameObject);
             }
 
-            //Sinon, il avance vers elle
+            //Sinon, il se tourne vers elle et avance
             else
             {
+                // TODO: Rotate the triangle to focus on the player.
                 Vector3 direction = (target.position - transform.position).normalized;
                 pos = transform.position + direction * speed * Time.deltaTime;
                 pos.y = transform.position.y;
