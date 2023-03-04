@@ -28,7 +28,7 @@ public class Window : MonoBehaviour
     {
         this.level = level;
         this.HP = level * 4;
-        var scale = Mathf.Exp(level / 2f);
+        var scale = Mathf.Exp(level / 1.3f);
         spawnCooldown = 1 / (level * 0.5f);
         transform.localScale = new Vector3(scale, scale, scale);
         bounds = GetComponent<BoxCollider2D>();

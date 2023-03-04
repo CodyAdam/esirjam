@@ -102,7 +102,8 @@ public class PlayerController : MonoBehaviour
 
         if(endDashing){
             endDashing = false;
-            SetTarget(focusTo.transform);
+            if (focusTo != null)
+                SetTarget(focusTo.transform);
         }
 
         if (focusTo != null)
