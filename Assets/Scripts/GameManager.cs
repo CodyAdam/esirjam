@@ -8,6 +8,20 @@ public class GameManager : MonoBehaviour
     #region Singleton
     public static GameManager instance;
 
+    int level = 1;
+
+    public int getLevel(){
+        return level;
+    }
+    /**
+     *
+     * To call when the window is broken
+     *
+     */
+    public void increaseLevel(){
+        level++;
+    }
+
     private void Awake()
     {
         if(instance == null)

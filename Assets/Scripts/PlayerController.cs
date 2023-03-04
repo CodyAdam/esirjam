@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 pos;
     Transform target;
     Vector2 direction = new Vector2();
+    float level = 1;
 
 
 
@@ -25,9 +26,19 @@ public class PlayerController : MonoBehaviour
         target = newTarget;
         transform.DOMove(target.position, .2f).SetEase(Ease.InCirc).OnComplete(() => {
             Destroy(target.gameObject);
+            level += .1f;
         });
     }
+    public float getLevel(){
+        return level;
+    }
+    public void hit(){
+        level -= .1f;
+    }
 
+    public float getSize(){
+        return level;
+    }
 
 
     private void Start()
@@ -45,6 +56,7 @@ public class PlayerController : MonoBehaviour
         if(target == null){
             transform.Translate(direction.normalized*speed/60.0f);
         }
+        transform.localScale = new Vector3(getSize(), getSize(), getSize());
     }
 
     void goTo(Vector2 pos, float speedFactor = 1){
