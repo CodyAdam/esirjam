@@ -20,7 +20,7 @@ public class Bullet : EnemyEntity
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(timer <= 0)
         {
@@ -30,7 +30,7 @@ public class Bullet : EnemyEntity
 
         else
         {
-            transform.Translate(direction * speed * Time.deltaTime);
+            transform.Translate(direction * speed / 60.0f);
         }
     }
 }

@@ -39,11 +39,11 @@ public class PlayerController : MonoBehaviour
         direction = value.Get<Vector2>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //Si le joueur a selectionn� une cible, il fonce dessus
         if(target == null){
-            transform.Translate(direction.normalized*speed*Time.deltaTime);
+            transform.Translate(direction.normalized*speed/60.0f);
         }
     }
 
