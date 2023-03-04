@@ -22,14 +22,6 @@ public class Bullet : EnemyEntity
         Destroy(gameObject);
     }
 
-    public void OnTriggerEnter2D(Collider2D col) {
-        if(col.gameObject.tag == "Player"){
-            var player = col.GetComponent<PlayerController>();
-            player.hit();
-            Destroy(gameObject);
-        }
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {

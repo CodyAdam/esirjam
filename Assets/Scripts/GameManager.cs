@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public GameObject music;
+    public Transform targetPoint;
+
+    public void SetTargetPoint(Vector3 newTargetPoint) { targetPoint.position = newTargetPoint; }
 
     // Start is called before the first frame update
     void Start()
