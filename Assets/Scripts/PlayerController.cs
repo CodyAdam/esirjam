@@ -8,14 +8,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    public Transform targeted;
-
     public float viewRadius;
 
     Vector2 pos;
+    Vector2 direction = new Vector2();
+    Vector3 targeted;
     Transform target;
     Transform focusTo;
-    Vector2 direction = new Vector2();
     float firstRadius;
     float level = 1;
     bool isDashing = false;
@@ -68,6 +67,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         target = null;
+        targeted = GameManager.instance.targetPoint.position;
         firstRadius = GetComponent<CircleCollider2D>().radius;
         viewRadius = GetComponent<CircleCollider2D>().radius * 20;
     }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         if(focusTo == null)
             return;
         SetTarget(focusTo.transform);
-        targeted.position = target.position;
+        targeted = target.position;
     }
 
 
@@ -93,13 +93,14 @@ public class PlayerController : MonoBehaviour
         if (focusTo != null)
         {
             Vector3 newPosition = new Vector3(focusTo.position.x, focusTo.position.y, focusTo.position.z - 5);
-            targeted.position = newPosition;
+            GameManager.instance.SetTargetPoint(newPosition);
         }
 
         else
         {
             Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-            targeted.position = newPosition;
+            GameManager.instance.SetTargetPoint(newPosition);
+            GameManager.instance.SetTargetPoint(newPosition);
         }
 
         //Si le joueur a selectionn� une cible, il fonce dessus
