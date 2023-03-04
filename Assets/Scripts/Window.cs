@@ -9,7 +9,8 @@ public class Window : MonoBehaviour
     private BoxCollider2D boxCollider;
     public void Init(int level) {
         this.level = level;
-        transform.localScale = new Vector3(level, level, level);
+        var scale = Mathf.Exp(level/2f);
+        transform.localScale = new Vector3(scale, scale, scale);
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
