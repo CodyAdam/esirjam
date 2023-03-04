@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
         if(target != null)
         {
             //Si il est sur la cible, il la détruit
-            if(Vector3.Distance(target.position, transform.position) >= 0.1)
+            if(Vector3.Distance(target.position, transform.position) <= 0.1)
             {
-                //Destruction()
+                Destroy(target.gameObject);
             }
 
             //Sinon, il avance vers elle
