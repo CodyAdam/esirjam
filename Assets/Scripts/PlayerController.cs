@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public double dashSpeedFactor;
 
     Vector3 pos;
     Transform target;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
             //Sinon, il avance vers elle
             else
             {
-                goTo(target.position);
+                goTo(target.position, 4);
             }
             
         }
