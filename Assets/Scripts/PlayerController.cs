@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Transform target;
     Transform focusTo;
     Vector2 direction = new Vector2();
+    float firstRadius;
     float level = 1;
     bool isDashing = false;
 
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public void SetLevel(float newLevel)
     {
         level = newLevel;
+        GetComponent<CircleCollider2D>().radius = firstRadius * newLevel;
     }
     public void hit(){
         if(!isDashing){
@@ -66,7 +68,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         target = null;
-        viewRadius = GetComponent<CircleCollider2D>().radius * 12;
+        firstRadius = GetComponent<CircleCollider2D>().radius;
+        viewRadius = GetComponent<CircleCollider2D>().radius * 20;
     }
 
     public void OnMove(InputValue value)
@@ -104,6 +107,7 @@ public class PlayerController : MonoBehaviour
             transform.Translate(direction.normalized*speed/60.0f);
         }
         transform.localScale = new Vector3(getSize(), getSize(), getSize());
+        
     }
 
     void Focus()
