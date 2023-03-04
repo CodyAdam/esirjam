@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad9d5634761921488a49ce3addd56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWindow: {fileID: 1251989186}
+  currentWindow: {fileID: 0}
   windowPrefab: {fileID: 6158285612699146758, guid: ac06c2053c943e5b0954ed697901c8de,
     type: 3}
   trigger: 0
@@ -450,18 +450,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1251989186 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3480387181933560988, guid: ac06c2053c943e5b0954ed697901c8de,
-    type: 3}
-  m_PrefabInstance: {fileID: 20178610}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f52d79dd90291309e7ff6398338479, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1481644991
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
       propertyPath: speed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
