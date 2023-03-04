@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     float firstRadius;
     float level = 1;
     bool isDashing = false;
+    bool endDashing = false;
+    nint nDash = 0;
 
 
 
@@ -29,14 +31,20 @@ public class PlayerController : MonoBehaviour
 
     public void SetTarget(Transform newTarget)
     {
+        if(newTarget == null)
+            return;
         if(isDashing)
             return;
-        isDashing = true;
+        if(nDash-- <= 0)
+            return;
         target = newTarget;
+        targeted.position = target.position;
+        isDashing = true;
         transform.DOMove(target.position, .2f).SetEase(Ease.InCirc).OnComplete(() => {
             level += .1f;
             isDashing = false;
             Destroy(target.gameObject);
+            endDashing = true;
         });
     }
     public bool IsDashing(){
@@ -79,16 +87,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire() 
     {
+        nDash = (int)level + 1;
+        if(isDashing)
+            return;
         if(focusTo == null)
             return;
         SetTarget(focusTo.transform);
-        targeted.position = target.position;
     }
-
 
     void FixedUpdate()
     {
         Focus();
+
+        if(endDashing){
+            endDashing = false;
+            SetTarget(focusTo.transform);
+        }
 
         if (focusTo != null)
         {
