@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         target = null;
-        viewRadius = GetComponent<SphereCollider>().radius * 6;
+        viewRadius = GetComponent<SphereCollider>().radius * 12;
     }
 
     public void OnMove(InputValue value)
