@@ -19,18 +19,8 @@ public class GameManager : MonoBehaviour
     // Debug only button to test next level
 
 
-    int level = 1;
-
     public int getLevel(){
         return level;
-    }
-    /**
-     *
-     * To call when the window is broken
-     *
-     */
-    public void increaseLevel(){
-        level++;
     }
 
     private void Awake()
