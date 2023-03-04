@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        transform.DOMove(target.position, .2f).SetEase(Ease.InCirc).OnComplete(() => {
+            Destroy(target.gameObject);
+        });
     }
 
 
@@ -38,25 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Si le joueur a selectionn� une cible, il fonce dessus
-        if(target != null)
-        {
-            //Si il est sur la cible, il la d�truit
-            if(Vector2.Distance(target.position, (Vector2)transform.position) <= 0.1)
-            {
-                Destroy(target.gameObject);
-            }
-
-            //Sinon, il avance vers elle
-            else
-            {
-                goTo(target.position, 4);
-            }
-            
-        }
-
-        //Sinon, il va vers le curseur
-        else
-        {
+        if(target == null){
             transform.Translate(direction.normalized*speed*Time.deltaTime);
         }
     }
