@@ -37,6 +37,7 @@ public class WindowWall : MonoBehaviour
             float randomScale = Random.Range(minCrackScale, maxCrackScale);
 
             // instantiate crack
+            other.GetComponent<AudioController>().GetSource().Play();
             GameObject crack = Instantiate(crackPrefab, hitPosition, rotation);
             crack.transform.localScale = new Vector3(randomScale, randomScale, randomScale) * window.transform.localScale.x;
             window.GetComponent<Window>().cracks.Add(crack);
