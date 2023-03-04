@@ -42,10 +42,7 @@ public class PlayerController : MonoBehaviour
             //Sinon, il avance vers elle
             else
             {
-                Vector3 direction = (target.position - transform.position);
-                direction.y = 0;
-                pos = transform.position + direction.normalized * 4 * speed * Time.deltaTime;
-                transform.position = pos;
+                goTo(target.position);
             }
             
         }
@@ -53,10 +50,14 @@ public class PlayerController : MonoBehaviour
         //Sinon, il va vers le curseur
         else
         {
-            Vector3 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            direction.y = 0;
-            pos = transform.position + direction.normalized * speed * Time.deltaTime;
-            transform.position = pos;
+            goTo(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
+    }
+
+    void goTo(Vector3 pos, float speedFactor = 1){
+        Vector3 direction = (pos - transform.position);
+        direction.y = 0;
+        pos = transform.position + direction.normalized * speedFactor * speed * Time.deltaTime;
+        transform.position = pos;
     }
 }
