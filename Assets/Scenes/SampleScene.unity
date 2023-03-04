@@ -288,6 +288,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &716945407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9030889396671408174, guid: cab650b87adab464b9caaac35bf0e78e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2110959409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &835918177 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7135254784001904210, guid: cab650b87adab464b9caaac35bf0e78e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2110959409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &869996731
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +552,44 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 873944749860372956, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037562020471426831, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037562020471426831, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037562020471426831, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.27525544
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602151900419419827, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_Name
+      value: Targeted
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135254784001904210, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135254784001904210, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135254784001904210, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.05
+      objectReference: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -610,6 +660,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
         type: 3}
+      propertyPath: circle
+      value: 
+      objectReference: {fileID: 835918177}
+    - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
+      propertyPath: targeted
+      value: 
+      objectReference: {fileID: 835918177}
+    - target: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
+        type: 3}
       propertyPath: dashSpeedFactor
       value: 4
       objectReference: {fileID: 0}
@@ -646,9 +706,97 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2110959411}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 354a40a8-c44d-4bc4-8b68-6809915c75cd
+    m_ActionName: Player/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bd8350b-1456-4e95-ab19-96ad5f95cc3e
+    m_ActionName: Player/Look
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2110959412}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d8da8d1d-3bd8-4ddc-97bd-42cd71ac99ad
+    m_ActionName: Player/Fire
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90424eeb-446b-46cf-b556-fd2e4d394f58
+    m_ActionName: UI/Navigate
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7ae97f81-4cef-4e15-8c48-bfb96bcb3a1c
+    m_ActionName: UI/Submit
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a887e7c-0f7c-4f94-a6b5-635338ee3e5b
+    m_ActionName: UI/Cancel
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cecdec72-63c7-4066-9781-d3a96acdadba
+    m_ActionName: UI/Point
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dca210a1-86ee-423c-bdf8-165d72ddca75
+    m_ActionName: UI/Click
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc0960f6-41d0-4f8a-b799-df3173cd5ecd
+    m_ActionName: UI/ScrollWheel
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ec2c4352-9e9b-4899-97ff-419ad42df50e
+    m_ActionName: UI/MiddleClick
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9e68b1c-b966-4f5e-88dd-856262d432ea
+    m_ActionName: UI/RightClick
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d88a4341-ce44-4ef7-90bd-adbf540fa569
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5474b986-a527-46c6-9bea-68b7451de4ef
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2110959412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9030889396671408175, guid: cab650b87adab464b9caaac35bf0e78e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2110959409}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110959410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0b43bab0a0222449e5bfcbf6426f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
