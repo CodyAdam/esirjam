@@ -132,7 +132,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         position.z = -2;
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(position, viewRadius);
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(position, viewRadius + level /2);
 
         float distance = 0;
         float minDistance = 99999999;
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
         focusTo = null;
         foreach (Collider2D enemy in enemies)
         {
-            if(Vector3.Distance(enemy.transform.position, transform.position) > viewRadius)
+            if(Vector3.Distance(enemy.transform.position, transform.position) > viewRadius + level /2)
                 continue;
             if (enemy.GetComponent<EnemyEntity>())
             {

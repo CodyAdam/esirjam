@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private int level = 1;
     public Window currentWindow;
     private Window nextWindow;
+    public AudioSource music;
     public GameObject windowPrefab;
     public Image fadeImage;
     public bool trigger = false;
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject player;
-    public GameObject music;
     public Transform targetPoint;
 
     public void SetTargetPoint(Vector3 newTargetPoint) { targetPoint.position = newTargetPoint; }
@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
         nextWindow.gameObject.SetActive(false);
 
         cam.orthographicSize = currentWindow.GetSize().y / 2;
-        music.GetComponent<AudioController>().GetSource().Play();
     }
 
     public void NextLevel()
@@ -77,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         // stop time for animation
         Time.timeScale = 0;
+        music.volume = 0.01f;
         currentWindow.canSpawn = false;
 
         //TODO animation cracks bigger
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         // resume time
         Time.timeScale = 1;
 
-
+        music.volume = .03f;
         GetComponent<AudioController>().GetSource().Play();
         Color flash = fadeImage.color;
         flash.a = .4f;
@@ -99,15 +99,25 @@ public class GameManager : MonoBehaviour
         {
             Destroy(bullet);
         }
-        level++;
+        bullets.Clear();
         currentWindow.Break();
+        if (level >= 5)
+        {
+            // disable the player and all enemies
+            player.SetActive(false);
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                enemy.SetActive(false);
+            }
+            // fing gameobject "Music" and stop the music
+            music.Stop();
+            yield break;
+        }
         currentWindow = nextWindow;
         currentWindow.gameObject.SetActive(true);
         currentWindow.canSpawn = true;
-
-        yield return new WaitForSeconds(1f);
-
-        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 5f);
+        level++;
+        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 10f);
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         nextWindow.Init(level + 1);
         nextWindow.gameObject.SetActive(false);
