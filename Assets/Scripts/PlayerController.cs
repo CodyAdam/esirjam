@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public double dashSpeedFactor;
 
-    Vector3 pos;
+    Vector2 pos;
     Transform target;
     Vector2 direction = new Vector2();
 
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         if(target != null)
         {
             //Si il est sur la cible, il la d�truit
-            if(Vector3.Distance(target.position, transform.position) <= 0.1)
+            if(Vector2.Distance(target.position, (Vector2)transform.position) <= 0.1)
             {
                 Destroy(target.gameObject);
             }
@@ -58,15 +58,13 @@ public class PlayerController : MonoBehaviour
         //Sinon, il va vers le curseur
         else
         {
-            var delta3d = new Vector3(direction.x, 0, direction.y);
-            transform.Translate(delta3d.normalized*speed*Time.deltaTime);
+            transform.Translate(direction.normalized*speed*Time.deltaTime);
         }
     }
 
-    void goTo(Vector3 pos, float speedFactor = 1){
-        Vector3 direction = (pos - transform.position);
-        direction.y = 0;
-        pos = transform.position + direction.normalized * speedFactor * speed * Time.deltaTime;
+    void goTo(Vector2 pos, float speedFactor = 1){
+        Vector2 direction = (pos - (Vector2)transform.position);
+        pos = (Vector2)transform.position + direction.normalized * speedFactor * speed * Time.deltaTime;
         transform.position = pos;
     }
 }

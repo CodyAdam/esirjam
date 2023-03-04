@@ -25,8 +25,8 @@ public class Minion : EnemyEntity
     {
         if (target != null)
         {
-            //Si il est sur la cible, il la détruit
-            if (Vector3.Distance(target.position, transform.position) <= 0.1)
+            //Si il est sur la cible, il la dï¿½truit
+            if (Vector2.Distance(target.position, transform.position) <= 0.1)
             {
                 Destroy(gameObject);
             }
@@ -34,10 +34,8 @@ public class Minion : EnemyEntity
             //Sinon, il avance vers elle
             else
             {
-                Vector3 direction = (target.position - transform.position).normalized;
-                pos = transform.position + direction * speed * Time.deltaTime;
-                pos.y = transform.position.y;
-                transform.position = pos;
+                Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
+                transform.Translate(direction * speed * Time.deltaTime);
 
                 if(countdown >= fireRate)
                 {

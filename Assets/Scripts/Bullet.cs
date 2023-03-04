@@ -5,10 +5,10 @@ using UnityEngine;
 public class Bullet : EnemyEntity
 {
 
-    Vector3 direction;
+    Vector2 direction;
     float timer = 3f; 
 
-    public void SetDirection(Vector3 newDirection)
+    public void SetDirection(Vector2 newDirection)
     {
         direction = newDirection;
     }
@@ -30,9 +30,7 @@ public class Bullet : EnemyEntity
 
         else
         {
-            pos = transform.position + direction * speed * Time.deltaTime;
-            pos.y = transform.position.y;
-            transform.position = pos;
+            transform.Translate(direction * speed * Time.deltaTime);
         }
     }
 }

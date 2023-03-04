@@ -6,7 +6,6 @@ public class EnemyEntity : MonoBehaviour
 {
 
     
-    protected Vector3 pos;
     protected float speed = 2.5f;
     Color startColor;
 
