@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     #region Singleton
     public static GameManager instance;
+    public GameObject menuButtons;
     private int level = 1;
     public Window currentWindow;
     private Window nextWindow;
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menuButtons.SetActive(false);
         currentWindow.Init(level);
         currentWindow.canSpawn = true;
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
@@ -155,15 +157,49 @@ public class GameManager : MonoBehaviour
             }
             // fing gameobject "Music" and stop the music
             music.Stop();
+            menuButtons.SetActive(true);
             yield break;
         }
         currentWindow = nextWindow;
         currentWindow.gameObject.SetActive(true);
         currentWindow.canSpawn = true;
         level++;
-        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 10f);
+        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 5f);
         nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
         nextWindow.Init(level + 1);
         nextWindow.gameObject.SetActive(false);
+    }
+
+
+    public void retry(){
+        level = 1;
+        music.Play();
+        player.SetActive(true);
+        currentWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
+        currentWindow.Init(level);
+        currentWindow.canSpawn = true;
+        nextWindow = Instantiate(windowPrefab, Vector3.zero, Quaternion.identity).GetComponent<Window>();
+        nextWindow.Init(level + 1);
+        nextWindow.gameObject.SetActive(false);
+
+        cam.DOOrthoSize(currentWindow.GetSize().y / 2, 1f);
+        cam.orthographicSize = 1;
+
+        player.GetComponent<PlayerController>().level = 1;
+        player.GetComponent<PlayerController>().setPosition(Vector2.zero);
+        usedWipe = false;
+        usedReduce = false;
+
+        bulletSpeed = 7;
+
+        menuButtons.SetActive(false);
+    }
+    public void quit(){
+        #if UNITY_STANDALONE
+            Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

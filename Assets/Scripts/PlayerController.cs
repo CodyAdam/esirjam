@@ -80,6 +80,9 @@ public class PlayerController : MonoBehaviour
     public float getSize(){
         return level;
     }
+    public void setPosition(Vector2 position){
+        transform.position = new Vector3(position.x, position.y, -1);
+    }
 
 
     private void Start()
