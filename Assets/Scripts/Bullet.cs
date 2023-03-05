@@ -12,12 +12,6 @@ public class Bullet : EnemyEntity
         direction = newDirection;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameManager.instance.bullets.Add(gameObject);
-    }
-
     void OnBecameInvisible(){
         Destroy(gameObject);
     }

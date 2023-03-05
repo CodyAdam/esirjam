@@ -30,17 +30,25 @@ public class Window : MonoBehaviour
 
     public void Init(int level)
     {
+        ResetPrefabs();
         if (level >= 6)
             return;
         this.level = level;
         this.HP = level * 4;
         var scale = Mathf.Exp(level / 1.3f);
-
+        enemyPrefab.transform.localScale *= scale*0.3f;
+        enemyPrefab.GetComponent<Minion>().bullet.transform.localScale *= scale*0.3f;
         bg.sprite = backgrounds[level - 1];
         spawnCooldown = 1 / (level * 0.5f);
         transform.localScale = new Vector3(scale, scale, scale);
         bounds = GetComponent<BoxCollider2D>();
         spawnTween = DOVirtual.DelayedCall(spawnCooldown, Spawn, true).SetLoops(-1);
+    }
+
+    private void ResetPrefabs()
+    {
+        enemyPrefab.transform.localScale = new Vector3(1,1,1);
+        enemyPrefab.GetComponent<Minion>().bullet.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
     private void Spawn()

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject windowPrefab;
     public Image fadeImage;
     public bool trigger = false;
-    public List<GameObject> bullets = new List<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     public Camera cam;
 
@@ -95,11 +95,11 @@ public class GameManager : MonoBehaviour
         fadeImage.color = flash;
         fadeImage.DOFade(0, .2f).SetEase(Ease.InSine);
         // remove all bullets
-        foreach (GameObject bullet in bullets)
+        foreach (GameObject enemie in enemies)
         {
-            Destroy(bullet);
+            Destroy(enemie);
         }
-        bullets.Clear();
+        enemies.Clear();
         currentWindow.Break();
         if (level >= 5)
         {
@@ -108,11 +108,6 @@ public class GameManager : MonoBehaviour
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 enemy.SetActive(false);
-            }
-            // disable all window
-            foreach (GameObject window in GameObject.FindGameObjectsWithTag("Window"))
-            {
-                window.SetActive(false);
             }
             // fing gameobject "Music" and stop the music
             music.Stop();

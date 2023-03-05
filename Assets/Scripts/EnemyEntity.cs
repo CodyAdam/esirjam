@@ -14,4 +14,9 @@ public class EnemyEntity : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        GameManager.instance.enemies.Add(gameObject);
+    }
+
 }
