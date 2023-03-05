@@ -24,9 +24,12 @@ public class Minion : EnemyEntity
     private void Update(){
         if(countdown >= fireRate)
         {
-            Shoot();
-            GetComponent<AudioController>().GetSource().Play();
-            countdown = 0;
+            if (Shoot())
+            {
+                GetComponent<AudioController>().GetSource().Play();
+                countdown = 0;
+            }
+            
         }
 
         countdown += Time.deltaTime;
@@ -56,9 +59,17 @@ public class Minion : EnemyEntity
     }
 
 
-    private void Shoot()
+    private bool Shoot()
     {
-        GameObject newBullet = Instantiate(this.bullet.gameObject, transform.position, transform.rotation);
-        newBullet.GetComponent<Bullet>();
+        if(transform.position.x < GameManager.instance.currentWindow.spawnMax.position.x &&
+           transform.position.x > GameManager.instance.currentWindow.spawnMin.position.x &&
+           transform.position.y < GameManager.instance.currentWindow.spawnMax.position.y &&
+           transform.position.y > GameManager.instance.currentWindow.spawnMin.position.y)
+        {
+            GameObject newBullet = Instantiate(this.bullet.gameObject, transform.position, transform.rotation);
+            newBullet.GetComponent<Bullet>();
+            return true;
+        }
+        return false;
     }
 }

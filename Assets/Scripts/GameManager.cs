@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Threading;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public AudioController kaboom;
+    public float bulletSpeed;
+    float reduceTimer = 30f;
+    bool usedWipe = false;
+    bool usedReduce = false;
     void Update()
     {
         if (trigger)
@@ -48,10 +54,47 @@ public class GameManager : MonoBehaviour
             NextLevel();
             trigger = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.P) && !usedWipe)
+        {
+            foreach (GameObject enemie in GameManager.instance.enemies)
+            {
+                Destroy(enemie);
+            }
+            kaboom.GetSource().Play();
+            usedWipe = true;
+        }
+
+
+
+        if (Input.GetKeyDown(KeyCode.I) && !usedReduce && reduceTimer > 0)
+        {
+            bulletSpeed /= 2;
+            foreach (GameObject enemie in enemies)
+            {
+                if (enemie != null && enemie.GetComponent<Minion>()) { enemie.GetComponent<Minion>().speed /= 2; }
+            }
+            usedReduce = true;
+        }
+
+        if (usedReduce && reduceTimer > 0) {
+            reduceTimer -= Time.deltaTime; 
+        }
+
+        if (usedReduce && reduceTimer < 0)
+        {
+            foreach (GameObject enemie in enemies)
+            {
+                if (enemie != null) { enemie.GetComponent<Minion>().speed *= 2; }
+            }
+            bulletSpeed *= 2;
+            usedReduce = false;
+        }
     }
 
     public GameObject player;
     public Transform targetPoint;
+    public PowerUpManager powerUpManager;
 
     public void SetTargetPoint(Vector3 newTargetPoint) { targetPoint.position = newTargetPoint; }
 

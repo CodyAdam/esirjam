@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public Transform enemy;
     public float spawnTimer;
     float timer = 0;
+    int difficulty = 1;
+    float timeDifficulty = 15;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +19,21 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer >= spawnTimer)
+        Debug.Log("Difficulty" + difficulty);
+        if (timer >= spawnTimer)
         {
-            Spawn();
+            for(int i = 0;i < difficulty; i++) { Spawn(); }
             timer = 0;
         }
+
         timer += Time.deltaTime;
+        timeDifficulty -= Time.deltaTime;
+
+        if(timeDifficulty < 0) { 
+            difficulty++;
+            Debug.Log("Difficulty" + difficulty);
+            timeDifficulty = 15;
+        }
     }
 
     void Spawn()

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6808158590806782840, guid: 9da55f42310a7274f971576000e1550c, type: 3}
-  speed: 2.5
+  speed: 2296.4385
   fireRate: 1.5
 --- !u!61 &-7407660085012422875
 BoxCollider2D:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: d73f710fdd77a7146a56db9c550ab3ae, type: 3}
-  volume: 0.1
+  volume: 0.05
   pitch: 0.77
   playOnAwake: 0
 --- !u!1 &7409247661475742610

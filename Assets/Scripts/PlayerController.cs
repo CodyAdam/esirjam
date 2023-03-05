@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     Transform target;
     Transform focusTo;
     float firstRadius;
-    float level = 1;
+    public float level = 1;
+    bool levelBlock = false;
     bool isDashing = false;
     bool endDashing = false;
     nint nDash = 0;
@@ -40,9 +41,13 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.SetTargetPoint(target.position);
         isDashing = true;
         transform.DOMove(target.position, .1f).SetEase(Ease.InCirc).OnComplete(() => {
-            level += .1f;
+            level += .1f * GameManager.instance.getLevel();
+            if (target != null)
+            {
+                GameManager.instance.enemies.Remove(target.gameObject);
+                Destroy(target.gameObject);
+            }
             isDashing = false;
-            Destroy(target.gameObject);
             endDashing = true;
         });
     }
@@ -55,15 +60,20 @@ public class PlayerController : MonoBehaviour
 
     public void SetLevel(float newLevel)
     {
+        if (!levelBlock)
+        {
         level = newLevel;
-        GetComponent<CircleCollider2D>().radius = firstRadius * newLevel;
+        }
     }
+
+    public void SetLevelBlock() { levelBlock = !levelBlock; }
+
     public void hit(){
         if(!isDashing){
             if(level < .5f)
                 death();
             else
-                level -= .1f;
+                level -= .1f * 2 * GameManager.instance.getLevel();
         }
     }
 
@@ -98,34 +108,43 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Focus();
-
-        if(endDashing){
-            endDashing = false;
-            if(focusTo!= null) { SetTarget(focusTo.transform); }
-            
-        }
-
-        if (focusTo != null)
+        if (level >= GameManager.instance.getLevel() * 10)
         {
-            Vector3 newPosition = new Vector3(focusTo.position.x, focusTo.position.y, focusTo.position.z - 5);
-            GameManager.instance.SetTargetPoint(newPosition);
+            GameManager.instance.NextLevel();
         }
 
         else
         {
-            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-            GameManager.instance.SetTargetPoint(newPosition);
-            GameManager.instance.SetTargetPoint(newPosition);
-        }
+            Focus();
 
-        //Si le joueur a selectionn� une cible, il fonce dessus
-        if(target == null){
-            transform.Translate(direction.normalized*speed/60.0f);
-        }
+            if (endDashing)
+            {
+                endDashing = false;
+                if (focusTo != null) { SetTarget(focusTo.transform); }
 
-        transform.localScale = new Vector3(getSize(), getSize(), getSize());
-        
+            }
+
+            if (focusTo != null)
+            {
+                Vector3 newPosition = new Vector3(focusTo.position.x, focusTo.position.y, focusTo.position.z - 5);
+                GameManager.instance.SetTargetPoint(newPosition);
+            }
+
+            else
+            {
+                Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                GameManager.instance.SetTargetPoint(newPosition);
+                GameManager.instance.SetTargetPoint(newPosition);
+            }
+
+            //Si le joueur a selectionn� une cible, il fonce dessus
+            if (target == null)
+            {
+                transform.Translate(direction.normalized * speed / 60.0f);
+            }
+
+            transform.localScale = new Vector3(getSize(), getSize(), getSize());
+        }
     }
 
     void Focus()

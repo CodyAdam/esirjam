@@ -10,6 +10,7 @@ public class EnemyEntity : MonoBehaviour
         {
             var player = col.GetComponent<PlayerController>();
             player.hit();
+            GameManager.instance.enemies.Remove(gameObject);
             Destroy(gameObject);
         }
     }
