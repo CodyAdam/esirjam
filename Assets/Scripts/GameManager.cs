@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         // stop time for animation
         Time.timeScale = 0;
+        var precedentVolume = music.volume;
         music.volume = 0.01f;
         currentWindow.canSpawn = false;
 
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour
         // resume time
         Time.timeScale = 1;
 
-        music.volume = .03f;
+        music.volume = precedentVolume;
         GetComponent<AudioController>().GetSource().Play();
         Color flash = fadeImage.color;
         flash.a = .4f;
